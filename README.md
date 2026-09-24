@@ -5,16 +5,22 @@ implementation, review. Works with GitHub Copilot in VS Code and with Claude Cod
 
 ## Install
 
-In the repo you want to work in:
+The repo is private, so clone it first (needs `gh auth login` or an SSH key):
 
 ```
-npx skills@latest add leonardwecke/onexip-skills -a github-copilot -s '*' -y
+gh repo clone leonardwecke/onexip-skills
+cd onexip-skills
+./install.sh claude              # Claude Code, global: symlinks into ~/.claude/skills
+./install.sh copilot ~/Repos/x   # Copilot, per project: copies into x/.agents/skills
+./install.sh                     # asks
 ```
 
-This copies the skills into `.agents/skills/` and writes `skills-lock.json`.
-Run the same command again to update.
+Update: `git pull`. Claude Code picks the change up through the symlinks, for
+Copilot run `./install.sh copilot <project>` again and commit the result.
+Existing skill folders that differ from this repo are moved to
+`.backup-<timestamp>/`, never deleted.
 
-Then, once per repo, in the agent chat:
+Then, once per project, in the agent chat:
 
 ```
 /setup-onexip-skills
