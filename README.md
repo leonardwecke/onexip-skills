@@ -11,12 +11,14 @@ The repo is private, so clone it first (needs `gh auth login` or an SSH key):
 gh repo clone leonardwecke/onexip-skills
 cd onexip-skills
 ./install.sh claude              # Claude Code, global: symlinks into ~/.claude/skills
+./install.sh claude ~/Repos/x    # Claude Code, per project: copies into x/.claude/skills
 ./install.sh copilot ~/Repos/x   # Copilot, per project: copies into x/.agents/skills
 ./install.sh                     # asks
 ```
 
-Update: `git pull`. Claude Code picks the change up through the symlinks, for
-Copilot run `./install.sh copilot <project>` again and commit the result.
+Update: `git pull`. The global install picks the change up through the
+symlinks, for a project install run the same command again and commit the
+result.
 Existing skill folders that differ from this repo are moved to
 `.backup-<timestamp>/`, never deleted.
 
